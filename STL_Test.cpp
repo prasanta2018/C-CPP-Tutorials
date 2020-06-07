@@ -670,8 +670,56 @@ void MapTest() {
 
 }
 
-void MultiMap() {
+// Multi Map Container Test
+void MultiMapTest() {
+    multimap<int,char> demoMultiMap; // empty multimap container
+    // insert elements
+    demoMultiMap.insert(pair<int,char> (1,'A'));
+    demoMultiMap.insert(pair<int,char> (2,'B'));
+    demoMultiMap.insert(pair<int,char> (3,'C'));
+    demoMultiMap.insert(pair<int,char> (3,'D'));
+    demoMultiMap.insert(pair<int,char> (3,'D'));
+    demoMultiMap.insert(pair<int,char> (2,'E'));
+    demoMultiMap.insert(pair<int,char> (4,'F'));
 
+    multimap<int,char>::iterator it;
+    cout << "demoMultiMap elements are:" << endl;
+    for( it = demoMultiMap.begin(); it != demoMultiMap.end(); it++ ) {
+        cout << it->first << "\t" << it->second << endl;
+    }
+
+    // assigning the elements from demoMultiMap to demoMultiMap2
+    multimap<int, char> demoMultiMap2(demoMultiMap.begin(),demoMultiMap.end());
+
+    cout << "demoMultiMap2 elements are:" << endl;
+    for (it = demoMultiMap2.begin(); it != demoMultiMap2.end(); it++)
+    {
+        cout << it->first << "\t" << it->second << endl;
+    }
+
+    // erase upto third element from demoMultiMap2
+    multimap<int, char>::iterator it2;
+    it = demoMultiMap2.begin();
+
+    // return the iterator to the first key-value pair with key = 3
+    it2 = demoMultiMap2.find(3);
+    // std::advance(it2,2);
+    demoMultiMap2.erase(it,it2);
+
+    cout << "After erase from [0-2], demoMultiMap2 elements are:" << endl;
+    for (it = demoMultiMap2.begin(); it != demoMultiMap2.end(); it++)
+    {
+        cout << it->first << "\t" << it->second << endl;
+    }
+
+    // remove all the element with key = 3
+    demoMultiMap2.erase(3);
+
+    cout << "After erase all the element with key = 3, demoMultiMap2 elements are:" << endl;
+    for (it = demoMultiMap2.begin(); it != demoMultiMap2.end(); it++)
+    {
+        cout << it->first << "\t" << it->second << endl;
+    }
 }
 
 int main()
@@ -685,5 +733,5 @@ int main()
     }
 
     // you can call any above defined container module to test
-    ArrayClassTest();
+    MultiMapTest();
 }
